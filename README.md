@@ -1,7 +1,25 @@
 # ntpd-for-docker-for-mac
 
-This project is a proof-of-concept for using openntpd to keep the Docker for
+This repository is a proof-of-concept for using openntpd to keep the Docker for
 Mac VM in sync with the host time.
+
+This approach could be used as a replacement for the existing sntpc container
+to fix issues with monotonicity and improve the smoothness of the VM clock. See
+https://github.com/docker/for-mac/issues/4347 for further details.
+
+## Implementation
+The Docker for Mac VM has access to a local ntp server at
+gateway.docker.internal. Openntpd can use this information to smoothly adjust
+the VM clock to stay in sync with the host. However this adjustment is limited
+to 500 ppm which is not sufficient to combat observed clock drift values.
+
+As a workaround, we perform a crude measurement of clock drift on startup and
+adjust the tick value, then rely on openntpd for fine-grained frequency
+adjustment on an ongoing basis.
+
+A possible improvement to this implementation would be to periodically check
+the drift value measured by ntpd and re-adjust the tick as needed. This could
+help if the drift rate changes over time in excess of 500 ppm.
 
 ## Usage
 
