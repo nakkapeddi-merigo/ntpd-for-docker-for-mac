@@ -8,7 +8,7 @@ get_offset() {
     sntpc -n gateway.docker.internal 2>&1 | sed -n 's/.* offset=\(-\?[0-9]\+\([.][0-9]\+\)\?*\), .*/\1/p'
 }
 
-set -e
+set -eu -o pipefail
 
 # Use sntpc to estimate drift
 log "measuring drift..."
