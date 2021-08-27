@@ -5,7 +5,7 @@ log() {
 }
 
 get_offset() {
-    sntpc -n gateway.docker.internal 2>&1 | sed -n 's/.* offset=\(-\?[0-9]\+\([.][0-9]\+\)\?*\), .*/\1/p'
+    sntpc -n pool.ntp.org 2>&1 | sed -n 's/.* offset=\(-\?[0-9]\+\([.][0-9]\+\)\?*\), .*/\1/p'
 }
 
 set -eu -o pipefail

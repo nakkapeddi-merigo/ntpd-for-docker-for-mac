@@ -44,7 +44,7 @@ Use `ntpctl` to get information about ntpd.
 
 You can use `sntpc` to monitor the offset.
 
-    docker exec ntpd sntpc -i 5 -n gateway.docker.internal
+    docker exec ntpd sntpc -i 5 -n pool.ntp.org
 
 The container will adjust the tick on startup. After about 15 minutes, `ntpd`
 will adjust the frequency offset to keep the VM clock more precisely in sync
