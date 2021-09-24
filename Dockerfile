@@ -22,4 +22,4 @@ COPY --from=mirror /out/ /
 COPY ntpd.conf /etc/ntpd.conf
 COPY start-ntpd.sh /usr/sbin/start-ntpd.sh
 COPY start-ntpd-nodrift.sh /usr/sbin/start-ntpd-nodrift.sh
-CMD [ "/usr/sbin/start-ntpd-nodrift.sh" ]
+CMD [ "/usr/sbin/start-ntpd.sh" ]
